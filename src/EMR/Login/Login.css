@@ -1,3 +1,12 @@
-.h2 {
+.id {
     color: blue;
+}
+
+.table {
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #04AA6D;
+    color: white;
 }
