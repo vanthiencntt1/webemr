@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import * as ServerApi from "../../ServerAPI/ServerApi";
 import "./Login.css";
+import Home from "../../Pages/Home";
+import RenderPage from "../../Pages/RenderPage";
+
+
 
 const Login = () => {
+
+    const navigate = useNavigate();
     const hashpasss = {
         password: ''
 
@@ -36,8 +46,19 @@ const Login = () => {
         setPassword(event.target.value);
     };
 
+    const onClickMenu = () => {
+        navigate('/');
 
-    const onClick = (event) => {
+        // return (
+        //     <>
+        //         < Routes>
+        //             <Route exact path='/' element={< Home />}></Route>
+        //         </Routes>
+        //     </>
+        // )
+
+    }
+    const onClickLogin = (event) => {
 
 
         ServerApi.post('/EmrUseridLogin/hash-password?password=' + password)
@@ -46,7 +67,7 @@ const Login = () => {
                 //   setHashpass(response); // Set the hashed password in the state
                 hashpasss.password = response;
 
-                console.log(hashpasss.password);
+
                 ServerApi.post('/EmrUseridLogin/GetEmrUseridLogin', {
                     "userid": username,
                     "password": hashpasss.password
@@ -58,7 +79,8 @@ const Login = () => {
                         console.log("Response", reders.fullname);
                         //  console.log("Response status:", response.status);
                         if (response.status = 200) {
-                            alert("Đăng nhập thành công ");
+                            //  alert("Đăng nhập thành công ")
+                            onClickMenu();
                         }
 
                         else {
@@ -89,6 +111,9 @@ const Login = () => {
 
     return (
         <>
+            {/* <Routes>
+                <Route path='/' element={< Home />}></Route>
+            </Routes> */}
             {/* <header>
                 <h1 className="id">Doituong:</h1>
                 <ul>
@@ -109,7 +134,7 @@ const Login = () => {
             <div class="box-form">
                 <div class="left">
                     <div class="overlay">
-                        <h1>Hello World.</h1>
+                        <h1>HỒ SƠ BỆNH ÁN EMR</h1>
 
                         <span>
                             <p>login with social media</p>
@@ -134,7 +159,7 @@ const Login = () => {
                         </label>
                         <p>forget password?</p>
                     </div>
-                    <button onClick={onClick}>Login</button>
+                    <button onClick={onClickLogin}>Đăng Nhập</button>
                 </div>
             </div>
 
@@ -177,6 +202,7 @@ const Login = () => {
                         ))}
                     </ul>
                 </div> */}
+
             </>
         </>
     );
