@@ -1,0 +1,13 @@
+.Phieuchamsoc {
+    height: 80%;
+    width: 80%;
+
+    float: left;
+    display: block;
+    text-align: center;
+}
+
+.HanhChinh {
+    display: block;
+    grid-row: 4 4 4 4;
+}

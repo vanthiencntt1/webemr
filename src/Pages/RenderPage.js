@@ -11,6 +11,7 @@ import Contact from "./Contact";
 import Home from "./Home";
 import NoPage from "./NoPage";
 import Login from "../EMR/Login/Login";
+import Phieuchamsoc from "../EMR/Phieuchamsoc/Phieuchamsoc";
 
 function RenderPage() {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ function RenderPage() {
     return (
         <>
 
-            <div classNameName="App">
+            <div classNameName="RenderPage">
 
 
                 <   link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -34,9 +35,9 @@ function RenderPage() {
                     <a> <Link to="/contact">Contact Us</Link></a>
                     <a ><Link to="/nopage">NoPage</Link></a>
                     <a ><Link to="/login">Login</Link></a>
+                    <a ><Link to="/phieuchamsoc">Phiếu chăm sóc</Link></a>
 
                 </div>
-
 
                 <Routes>
                     <Route exact path='/' element={< Home />}></Route>
@@ -44,6 +45,7 @@ function RenderPage() {
                     <Route exact path='/contact' element={< Contact />}></Route>
                     <Route exact path='/nopage' element={< NoPage />}></Route>
                     <Route exact path='/login' element={< Login />}></Route>
+                    <Route exact path='/phieuchamsoc' element={< Phieuchamsoc />}></Route>
                 </Routes>
             </div >
 
