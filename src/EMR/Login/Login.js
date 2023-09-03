@@ -25,7 +25,8 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [render, setRender] = useState([]);
-
+    const [checklogin, setChecklogin] = useState(null);
+   
     useEffect(() => {
         ServerApi.get('/danhmuc/getdoituong')
             .then(function (response) {
@@ -49,14 +50,6 @@ const Login = () => {
     const onClickMenu = () => {
         navigate('/');
 
-        // return (
-        //     <>
-        //         < Routes>
-        //             <Route exact path='/' element={< Home />}></Route>
-        //         </Routes>
-        //     </>
-        // )
-
     }
     const onClickLogin = (event) => {
 
@@ -65,7 +58,7 @@ const Login = () => {
             .then(function (response) {
 
                 //   setHashpass(response); // Set the hashed password in the state
-                hashpasss.password = response;
+                hashpasss.password = response.data;
 
 
                 ServerApi.post('/EmrUseridLogin/GetEmrUseridLogin', {
@@ -74,22 +67,21 @@ const Login = () => {
                 }
                 )
                     .then(function (response) {
+                      //  setChecklogin(response.status)
+                  
+                        // setChecklogin(response.status)
+                        // console.log(checklogin)
                         reders.fullname = response.fullname;
-
-                        console.log("Response", reders.fullname);
-                        //  console.log("Response status:", response.status);
-                        if (response.status = 200) {
-                            //  alert("Đăng nhập thành công ")
+                         console.log("Response status:", response.status);
+                         if (response && response.status === 200) {
+                            // alert("Đăng nhập thành công")
                             onClickMenu();
-                        }
-
-                        else {
-                            alert("Vui lòng nhập lại ");
                         }
                     })
                     .catch(function (error) {
                         // handle error
                         console.log("Error:", error);
+                        alert("Vui long nhập đúng tài khoản và mật khẩu")
                     });
                 return reders.fullname;
 

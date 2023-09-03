@@ -1,8 +1,14 @@
 .RenderPage {
-    width: 50px;
+    position: relative;
     margin: 0 auto;
+    height: 100%;
 }
 
+   
+.RenderPage .footer{
+    position: absolute;
+    bottom: 5px;
+}
 .topnav {
     background-color: #333;
     overflow: hidden;
