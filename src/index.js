@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import RenderPage from './Pages/RenderPage';
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import Login from "./EMR/Login/Login";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <App /> */}
-      {/* <Login /> */}
-      <RenderPage />
+      <Login />
+      {/* <RenderPage /> */}
     </BrowserRouter>
   </React.StrictMode>
 );

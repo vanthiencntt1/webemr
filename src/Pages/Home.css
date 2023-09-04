@@ -1,56 +1,46 @@
 .contenner {
-    max-width: 1200px;
-    margin: 2% 10%;
-    position: relative;
-    height: 1000px;
-  }
-  
-  .header-main {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .hero {
-   
-  }
-  .hero-image {
-    /* background: url(../Images//Login/img1.png); */
-    left: 10%;
-    z-index: 5;
-     position:absolute;
+  max-width: 1200px;
+  margin: 2% 10%;
+  position: relative;
+  height: 1000px;
+}
 
-  }
-  .hero-bar {
-    z-index: 10;
-    /* position: relative; */
-    position: absolute; 
-    
-    
-  }
-  .hero-caption {
-    font-size: 100px;
-  }
-  /* .hero-hading {
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero-image {
+  /* background: url(../Images//Login/img1.png); */
+  left: 10%;
+  z-index: 5;
+  position: absolute;
+}
+.hero-bar {
+  z-index: 10;
+  /* position: relative; */
+  position: absolute;
+}
+.hero-caption {
+  font-size: 100px;
+}
+/* .hero-hading {
     font-size: 20px;
   } */
-  .hero-link {
-    font-size: 20px;
-  }
-  
-  .image {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;
-  }
-  
-  .patner-main {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 40px;
-    background-color: #fff;
-    /* background-image: url(../images/contact-bg.png); */
-  }
-  
-  
-  /*# sourceMappingURL=css.css.map */
-  
+.hero-link {
+  font-size: 20px;
+}
+
+.image {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+}
+
+.patner-main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 40px;
+  background-color: #fff;
+  /* background-image: url(../images/contact-bg.png); */
+}

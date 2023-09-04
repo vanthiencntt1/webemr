@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-
+import ReactDOM from 'react-dom/client';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import * as ServerApi from "../../ServerAPI/ServerApi";
@@ -75,7 +75,16 @@ const Login = () => {
                          console.log("Response status:", response.status);
                          if (response && response.status === 200) {
                             // alert("Đăng nhập thành công")
-                            onClickMenu();
+                           // onClickMenu();
+                            const root = ReactDOM.createRoot(document.getElementById('root'));
+                            root.render(
+                              <React.StrictMode>
+                                <BrowserRouter>
+
+                                  <RenderPage />
+                                </BrowserRouter>
+                              </React.StrictMode>
+                            );
                         }
                     })
                     .catch(function (error) {

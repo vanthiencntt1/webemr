@@ -1,6 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
-
 
 const ServerApi = axios.create({
   baseURL: "http://mqsoft.ddns.net:9999",
@@ -69,6 +67,16 @@ export const DetaitPrescription = async (part, op = {}) => {
   export const GetListDiagnosticResult = async (part, op = {}) => {
     const response = await ServerApi.get(
       "/EmrViewMedicalRecord/GetListDiagnosticResult",
+      op
+    );
+    return response.data;
+  };
+
+  //http://localhost:8083/EmrViewMedicalRecord/GetDetailDiagnosticResult?createDate=13/02/2023 07:58&id=2302131112189019447&technicalId=32
+
+  export const GetDetailDiagnosticResult = async (part, op = {}) => {
+    const response = await ServerApi.get(
+      "/EmrViewMedicalRecord/GetDetailDiagnosticResult",
       op
     );
     return response.data;

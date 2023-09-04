@@ -2,7 +2,8 @@ import { useState } from "react";
 import * as ServerApi from "../../ServerAPI/ServerApi";
 import "./HosoBenan.css";
 import ChiTietCDHA from "./ChiTietCDHA";
-import ChiTietThuoc from "./ChiTietThuoc";
+//import ChiTietThuoc from "./ChiTietThuoc";
+//import { useEffect } from "react";
 
 const HosoBenan = () => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -18,15 +19,37 @@ const HosoBenan = () => {
     ? informationTreatments
     : [informationTreatments];
 
-  async function API(mabn, years) {
-    ServerApi.getDoiTuong()
+
+
+  const handleInformationTreatment = (encounterCode, treatmentDate) => {
+    ServerApi.GetInformationTreatment("", {
+      params: {
+        encounterCode: encounterCode,
+        treatmentDate: treatmentDate,
+      },
+    })
       .then(function (response) {
         // handle success
+        setInformationTreatment(response);
       })
       .catch(function (error) {
         // handle error
         console.log("Error:", error);
       });
+  };
+
+
+
+
+  async function API(mabn, years) {
+    // ServerApi.getDoiTuong()
+    //   .then(function (response) {
+    //     // handle success
+    //   })
+    //   .catch(function (error) {
+    //     // handle error
+    //     console.log("Error:", error);
+    //   });
     ServerApi.getYear("", {
       params: {
         patientCode: mabn,
@@ -34,12 +57,11 @@ const HosoBenan = () => {
     })
       .then(function (response) {
         // handle success
-
         setYear(response);
       })
       .catch(function (error) {
-        // handle error
         console.log("Error:", error);
+        alert("Vui lòng nhập đúng mã bệnh nhân");
       });
 
     ServerApi.getGetListEncounter("", {
@@ -67,7 +89,7 @@ const HosoBenan = () => {
   };
   const Getnam = () => {
     API(mabn);
-    //[{"key":"patientCode","value":"22072888","equals":true}]
+    //[{"key":"patientCode","value":"22072888" ,23008203,"equals":true}]
     // return (<>
     //     <div>
 
@@ -78,23 +100,6 @@ const HosoBenan = () => {
     //     </div>
 
     // </>)
-  };
-
-  const handleInformationTreatment = (encounterCode, treatmentDate) => {
-    ServerApi.GetInformationTreatment("", {
-      params: {
-        encounterCode: encounterCode,
-        treatmentDate: treatmentDate,
-      },
-    })
-      .then(function (response) {
-        // handle success
-        setInformationTreatment(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log("Error:", error);
-      });
   };
 
   const ViewGetInformationTreatment = (mabn, selectedYear) => {
@@ -195,29 +200,30 @@ const HosoBenan = () => {
       </>
     );
   };
-  const viewGetListDiagnosticResult = (mabn, selectedYear) => {
-    console.log(mabn, selectedYear);
-    ChiTietCDHA(mabn, selectedYear);
+  const viewGetListDiagnosticResult = () => {
+   // console.log(mabn, selectedYear);
+   // ChiTietCDHA(mabn, selectedYear);
   };
+
   return (
     <>
-      <div >
+      <div>
         <thead className="TRACU">
-        <h2>NHẬP MÃ BỆNH NHÂN TRA CỨU</h2>
-        <input type="text" onChange={onChangeMabn} />
-        <input type="submit" onClick={Getnam} />
-        <h2>LIST YEAR</h2>
-        <div>
-          {years.map((year, index) => (
-            <button
-              type="submit"
-              onClick={() => onClickNam(year.yyyy)}
-              key={index}
-            >
-              {year.yyyy}{" "}
-            </button>
-          ))}
-        </div>
+          <h2>NHẬP MÃ BỆNH NHÂN TRA CỨU</h2>
+          <input type="text" onChange={onChangeMabn} />
+          <input type="submit" onClick={Getnam} />
+          <h2>LIST YEAR</h2>
+          <div>
+            {years.map((year, index) => (
+              <button
+                type="submit"
+                onClick={() => onClickNam(year.yyyy)}
+                key={index}
+              >
+                {year.yyyy}{" "}
+              </button>
+            ))}
+          </div>
         </thead>
       </div>
 
@@ -293,7 +299,7 @@ const HosoBenan = () => {
                 </button>
                 <button
                   onClick={() =>
-                    viewGetListDiagnosticResult(mabn, selectedYear)
+                    viewGetListDiagnosticResult()
                   }
                 >
                   Chi Tiết CDHA
@@ -306,6 +312,11 @@ const HosoBenan = () => {
 
       <ViewGetInformationTreatment />
       <ViewDetaitPrescription />
+      <ChiTietCDHA
+      mabn ={mabn}
+      selectedYear={selectedYear}
+      viewGetListDiagnosticResult={viewGetListDiagnosticResult}
+      />
     </>
   );
 };

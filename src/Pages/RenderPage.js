@@ -1,6 +1,6 @@
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./RenderPage.css";
 import Blogs from "./Blogs";
 import Contact from "./Contact";
@@ -35,9 +35,9 @@ function RenderPage() {
           <a>
             <Link to="/nopage">NoPage</Link>
           </a>
-          <a>
+          {/* <a>
             <Link to="/login">Login</Link>
-          </a>
+          </a> */}
           <a>
             <Link to="/phieuchamsoc">Phiếu chăm sóc</Link>
           </a>
@@ -51,7 +51,7 @@ function RenderPage() {
           <Route exact path="/blogs" element={<Blogs />}></Route>
           <Route exact path="/contact" element={<Contact />}></Route>
           <Route exact path="/nopage" element={<NoPage />}></Route>
-          <Route exact path="/login" element={<Login />}></Route>
+          {/* <Route exact path="/login" element={<Login />}></Route> */}
           <Route exact path="/phieuchamsoc" element={<Phieuchamsoc />}></Route>
           <Route exact path="/hosobenan" element={<HosoBenan />}></Route>
         </Routes>
